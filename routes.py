@@ -1,10 +1,23 @@
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, Depends, Header, HTTPException, status
 
 from exceptions import AreaCodeNotServicedException, InvalidSlotIdException
 from models import BookRequest, BookResponse, LookupRequest, LookupResponse
 from handlers import lookup_area_code_handler, book_appointment_handler
 
-router = APIRouter()
+API_KEY = "ridgeway_hvac_fde"
+
+
+def verify_api_key(
+    x_ridgeway_key: str | None = Header(None, alias="X-Ridgeway-Key"),
+) -> None:
+    if x_ridgeway_key != API_KEY:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Unauthorized: Missing or invalid X-Ridgeway-Key header",
+        )
+
+
+router = APIRouter(dependencies=[Depends(verify_api_key)])
 
 
 @router.post(
