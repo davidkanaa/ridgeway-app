@@ -1,0 +1,85 @@
+# ==============================================================================
+# Python Environment & Package Managers
+# ==============================================================================
+# uv manages this automatically, but keeping it here for safety
+.venv/
+env/
+venv/
+ENV/
+
+# Python compiled bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# ==============================================================================
+# Application Secrets & Configuration (CRITICAL FOR SECURITY)
+# ==============================================================================
+# Never commit credentials, API keys, or database passwords
+.env
+.env.*
+!.env.example
+secrets.json
+
+# ==============================================================================
+# Code Editors & IDEs
+# ==============================================================================
+# VS Code
+.vscode/
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/tasks.json
+
+# PyCharm / IntelliJ
+.idea/
+
+# General text editors
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ==============================================================================
+# Testing, Coverage & Linters
+# ==============================================================================
+.htmlcov/
+.tox/
+.nosetests/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+vcr_cassettes/
+.coverage
+.coverage.*
+coverage.xml
+nosetests.xml
+
+# ==============================================================================
+# Local Databases & Logs
+# ==============================================================================
+# Local SQLite files or application logs
+*.db
+*.sqlite3
+*.log
