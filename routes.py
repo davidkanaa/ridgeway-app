@@ -1,5 +1,6 @@
-from fastapi import APIRouter, status
+from fastapi import APIRouter, HTTPException, status
 
+from exceptions import AreaCodeNotServicedException, InvalidSlotIdException
 from models import BookRequest, BookResponse, LookupRequest, LookupResponse
 from handlers import lookup_area_code_handler, book_appointment_handler
 
@@ -21,4 +22,10 @@ def lookup_area_code(payload: LookupRequest) -> LookupResponse:
     response_model=BookResponse,
 )
 def book_appointment_handler(payload: BookRequest) -> BookResponse:
-    return book_appointment_handler(payload)
+    try:
+        return book_appointment_handler(payload)
+    except (AreaCodeNotServicedException, InvalidSlotIdException) as e:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail=e.message,
+        )
