@@ -25,7 +25,7 @@ router = APIRouter(dependencies=[Depends(verify_api_key)])
     status_code=status.HTTP_200_OK,
     response_model=LookupResponse,
 )
-def lookup_area_code(payload: LookupRequest) -> LookupResponse:
+async def lookup_area_code(payload: LookupRequest) -> LookupResponse:
     return lookup_area_code_handler(payload)
 
 
@@ -34,7 +34,7 @@ def lookup_area_code(payload: LookupRequest) -> LookupResponse:
     status_code=status.HTTP_201_CREATED,
     response_model=BookResponse,
 )
-def book_appointment(payload: BookRequest) -> BookResponse:
+async def book_appointment(payload: BookRequest) -> BookResponse:
     try:
         return book_appointment_handler(payload)
     except (AreaCodeNotServicedException, InvalidSlotIdException) as e:
