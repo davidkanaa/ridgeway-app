@@ -34,7 +34,7 @@ def lookup_area_code(payload: LookupRequest) -> LookupResponse:
     status_code=status.HTTP_201_CREATED,
     response_model=BookResponse,
 )
-def book_appointment_handler(payload: BookRequest) -> BookResponse:
+def book_appointment(payload: BookRequest) -> BookResponse:
     try:
         return book_appointment_handler(payload)
     except (AreaCodeNotServicedException, InvalidSlotIdException) as e:
